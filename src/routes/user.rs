@@ -7,7 +7,14 @@ use crate::domain::ioc::ServiceContainer;
 #[get("/user/<id>")]
 pub fn get_user(service: &State<ServiceContainer>, id: i32) -> Json<User> {
     let users = service.user_service.show(id);
-    Json(users.unwrap())
+    match users {
+        Some(user) => Json(user),
+        None => Json(User{
+            id,
+            username: "-".to_string(),
+            email: "-".to_string(),
+        })
+    }
 }
 
 #[post("/user", format = "json", data = "<user>")]
