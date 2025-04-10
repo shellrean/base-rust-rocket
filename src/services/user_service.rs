@@ -1,6 +1,11 @@
-use crate::models::user::User;
-use crate::repositories::user_repository;
+use crate::domain::user::{User, UserService, UserRepository};
 
-pub fn get_user_detail(id: i32) -> Option<User> {
-    user_repository::find_user_by_id(id)
+pub struct UserServiceImpl {
+    pub user_repo: Box<dyn UserRepository>,
+}
+
+impl UserService for UserServiceImpl {
+    fn show(&self, id: i32) -> Option<User> {
+        self.user_repo.find_by_id(id)
+    }
 }
