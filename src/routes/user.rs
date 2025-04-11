@@ -1,4 +1,4 @@
-use rocket::get;
+use rocket::{get, post};
 use rocket::serde::json::Json;
 use rocket::State;
 use crate::domain::user::{User};

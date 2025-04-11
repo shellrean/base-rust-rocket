@@ -1,11 +1,9 @@
-#[macro_use]
-extern crate rocket;
-extern crate core;
-
 mod repositories;
 mod routes;
 mod services;
 mod domain;
+
+use rocket::{routes};
 
 use routes::user;
 use repositories::user_repository::UserRepositoryImpl;
